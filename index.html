@@ -39,31 +39,19 @@ button:hover{transform:scale(1.1);}
 .petal:nth-child(5){transform:rotate(288deg) translateY(-40px);}
 .center{width:30px;height:30px;background:deeppink;border-radius:50%;box-shadow:0 0 15px hotpink;z-index:1;}
 @keyframes glow{0%,100%{transform:scale(1);opacity:0.8;}50%{transform:scale(1.2);opacity:1;}}
-
-/* Love Video */
-#loveVideo{
-position:fixed;
-top:0;
-left:0;
-width:100vw;
-height:100vh;
-object-fit:cover;
-background:black;
-z-index:999999;
-display:none;
-}
 </style>
 </head>
 <body>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <!-- Music Control -->
 <div id="music-control">
     <button id="musicBtn">🎵 Play Love Song - From Yours, Ahmed ❤️</button>
     <audio id="loveSong" src="love_song.mp3"></audio>
 </div>
-
-<!-- Love Video -->
-<video id="loveVideo" src="video1.mp4"></video>
 
 <!-- Start Page -->
 <div id="startPage" class="section active">
@@ -174,10 +162,23 @@ display:none;
 <div id="page8" class="section">
     <h2>💌 Your Secret Answers 💌</h2>
     <div id="allAnswers" style="margin-top:20px;line-height:1.8;font-size:18px;"></div>
-    <button onclick="playVideo()">I Love You 😘</button>
+    <button onclick="showAnswers()">I Love You 😘</button>
 </div>
 
 <script>
+// Firebase Initialization
+const firebaseConfig = {
+  apiKey: "حط هنا الـ API Key",
+  authDomain: "ahmed-14f1a-default-rtdb.firebaseapp.com",
+  databaseURL: "https://ahmed-14f1a-default-rtdb.firebaseio.com",
+  projectId: "ahmed-14f1a-default-rtdb",
+  storageBucket: "ahmed-14f1a-default-rtdb.appspot.com",
+  messagingSenderId: "حط هنا الرقم",
+  appId: "حط هنا الـ App ID"
+};
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 let startPage = document.getElementById("startPage");
 let page1 = document.getElementById("page1");
 let page2 = document.getElementById("page2");
@@ -253,51 +254,34 @@ musicBtn.addEventListener("click", ()=>{
     else{ loveSong.pause(); musicBtn.innerText = "🎵 Play Love Song - From Yours, Ahmed ❤️"; isPlaying=false; }
 });
 
-/* Save Answers */
+/* Save Answers to Firebase */
 function saveAnswer(id){
-    let input = document.getElementById(id);
-    localStorage.setItem(id, input.value);
-    alert("Saved! ✅");
+    const val = document.getElementById(id).value;
+    database.ref('answers/' + id).set(val);
+    alert("Saved to cloud! ✅");
 }
-for(let i=1;i<=4;i++){
-    let ans = localStorage.getItem('answer'+i);
-    if(ans) document.getElementById('answer'+i).value = ans;
+
+/* Load Answers in realtime */
+for(let i=1; i<=4; i++){
+    database.ref('answers/answer'+i).on('value', snapshot => {
+        const val = snapshot.val();
+        if(val) document.getElementById('answer'+i).value = val;
+    });
 }
 
 /* Show All Answers */
 function showAnswers(){
-    let answersDiv = document.getElementById('allAnswers');
-    answersDiv.innerHTML = `
-      <p><b>When did we fall in love? ❤️</b><br>${localStorage.getItem('answer1') || 'No answer yet 😅'}</p>
-      <p><b>A moment we can't describe 😍</b><br>${localStorage.getItem('answer2') || 'No answer yet 😅'}</p>
-      <p><b>A happy memory between us 💖</b><br>${localStorage.getItem('answer3') || 'No answer yet 😅'}</p>
-      <p><b>Tell me everything in your heart 💌</b><br>${localStorage.getItem('answer4') || 'No answer yet 😅'}</p>
-    `;
-}
-
-/* Play Love Video */
-function playVideo(){
-    showAnswers();
-    loveSong.pause();
-    loveSong.currentTime = 0;
-    let video = document.getElementById("loveVideo");
-    video.style.display = "block";
-    video.play();
-    if (video.requestFullscreen) {
-        video.requestFullscreen();
-    } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
-    } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
-    }
-    video.onended = function(){
-        video.style.display = "none";
-        if(document.fullscreenElement){
-            document.exitFullscreen();
-        }
-    };
+    const answersDiv = document.getElementById('allAnswers');
+    database.ref('answers').once('value').then(snapshot=>{
+      const data = snapshot.val();
+      answersDiv.innerHTML = `
+        <p><b>When did we fall in love? ❤️</b><br>${data?.answer1 || 'No answer yet 😅'}</p>
+        <p><b>A moment we can't describe 😍</b><br>${data?.answer2 || 'No answer yet 😅'}</p>
+        <p><b>A happy memory between us 💖</b><br>${data?.answer3 || 'No answer yet 😅'}</p>
+        <p><b>Tell me everything in your heart 💌</b><br>${data?.answer4 || 'No answer yet 😅'}</p>
+      `;
+    });
 }
 </script>
 </body>
 </html>
-
