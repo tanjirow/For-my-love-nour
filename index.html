@@ -93,6 +93,8 @@ button:hover{transform:scale(1.1);}
         From the first moment I loved you until now, and for all the days to come, you mean everything to me.
         <br><br>
         <b>No matter what happens, I will always love you 😍</b>
+        <br><br>
+        <button onclick="showQuestions()" style="margin-top:20px;padding:10px 20px;font-size:16px;border-radius:10px;border:none;background:#ff2e63;color:white;cursor:pointer;">Secret 😳</button>
     </div>
 </div>
 
@@ -129,6 +131,8 @@ button:hover{transform:scale(1.1);}
 /* Start Button */
 let startPage = document.getElementById("startPage");
 let page1 = document.getElementById("page1");
+let page2 = document.getElementById("page2");
+let page3 = document.getElementById("page3");
 let loveSong = document.getElementById("loveSong");
 
 function startSite(){
@@ -140,8 +144,6 @@ function startSite(){
 /* Yes/No Buttons */
 let noBtn=document.getElementById("noBtn");
 let yesBtn=document.getElementById("yesBtn");
-let page2 = document.getElementById("page2");
-let page3 = document.getElementById("page3");
 let size=20;
 let funnyTexts=["Are you sure? 😢","Think again 😏","You can't escape me 😂","I won't give up 😌","Last chance 😍"];
 let count=0;
@@ -162,6 +164,12 @@ yesBtn.addEventListener("click",function(){
 function goToLove(){
     page2.classList.remove("active");
     page3.classList.add("active");
+}
+
+/* Secret button to show questions */
+function showQuestions(){
+    page3.classList.remove("active");
+    document.getElementById("page4").classList.add("active");
 }
 
 /* Floating hearts */
@@ -207,4 +215,3 @@ for(let i=1;i<=4;i++){
 
 </body>
 </html>
-
