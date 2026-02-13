@@ -11,125 +11,143 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
 font-family:'Poppins',sans-serif;
-background:#000;
+overflow-x:hidden;
+background:black;
 color:white;
-overflow:hidden;
 text-align:center;
 }
 
-/* SECTIONS */
 .section{
-position:absolute;
-inset:0;
-display:flex;
+display:none;
+height:100vh;
+width:100%;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-opacity:0;
-pointer-events:none;
-transition:opacity .8s ease;
+position:relative;
 padding:20px;
 }
-.section.active{
-opacity:1;
-pointer-events:auto;
-}
+.active{display:flex;}
 
-/* BUTTON */
 button{
-padding:14px 30px;
+padding:15px 35px;
+font-size:20px;
 border:none;
 border-radius:50px;
 cursor:pointer;
-font-size:18px;
 transition:.3s;
+margin:10px;
 }
-button:hover{transform:scale(1.08);}
+button:hover{transform:scale(1.1);}
 
-/* START */
-.start-btn{
-font-size:28px;
-background:deeppink;
-color:white;
-box-shadow:0 0 25px hotpink;
-}
-
-/* YES NO */
 #yesBtn{background:#ff2e63;color:white;}
 #noBtn{background:white;color:#ff2e63;}
 
-.love-bg{
+.cute-page{
+font-family:'Great Vibes',cursive;
+font-size:40px;
+}
+.cute-bg{
 position:absolute;
-inset:0;
+top:0;left:0;
+width:100%;height:100%;
 background:url('image1.jpg') center/cover;
-filter:brightness(.45);
-z-index:-1;
+filter:brightness(.5);
+z-index:0;
 }
+.cute-text{z-index:1;}
 
-/* LOVE TEXT */
-.love-text{
-max-width:800px;
-line-height:1.8;
-animation:fadeUp 1s ease;
+.love-page{background:rgba(0,0,0,.85);overflow-y:auto;}
+.love-text{max-width:800px;line-height:1.8;font-size:18px;}
+.love-img{width:150px;border-radius:15px;}
+
+.question-img{
+width:200px;
+border-radius:15px;
+margin-bottom:20px;
 }
-
-@keyframes fadeUp{
-from{transform:translateY(30px);opacity:0;}
-to{transform:translateY(0);opacity:1;}
-}
-
-/* QUESTIONS */
 .question-input{
-margin-top:10px;
-padding:12px;
+padding:10px;
 border:none;
-border-radius:12px;
+border-radius:10px;
 width:80%;
 max-width:400px;
+margin-bottom:10px;
 }
 
-/* MUSIC */
-#musicBtn{
+.heart{
+position:fixed;
+color:white;
+animation:float 6s linear forwards;
+z-index:9999;
+}
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-120vh);opacity:0;}
+}
+
+#music-control{
 position:fixed;
 top:10px;
 right:10px;
+z-index:9999;
+}
+#musicBtn{
+padding:10px 15px;
+font-size:14px;
 background:#ff2e63;
 color:white;
-font-size:14px;
-z-index:99;
+border-radius:10px;
 }
 
-/* HEARTS */
-.heart{
-position:fixed;
-bottom:-20px;
-font-size:20px;
-animation:float 6s linear forwards;
-pointer-events:none;
+/* flower start */
+.flower{position:relative;display:flex;flex-direction:column;align-items:center;}
+.petal{
+width:60px;height:60px;
+background:pink;
+border-radius:50%;
+position:absolute;
+box-shadow:0 0 20px hotpink;
 }
-@keyframes float{
-to{
-transform:translateY(-120vh);
-opacity:0;
-}
+.petal:nth-child(1){transform:rotate(0deg) translateY(-60px);}
+.petal:nth-child(2){transform:rotate(72deg) translateY(-60px);}
+.petal:nth-child(3){transform:rotate(144deg) translateY(-60px);}
+.petal:nth-child(4){transform:rotate(216deg) translateY(-60px);}
+.petal:nth-child(5){transform:rotate(288deg) translateY(-60px);}
+.center{
+width:50px;height:50px;
+background:deeppink;
+border-radius:50%;
+margin-bottom:20px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- MUSIC -->
+<div id="music-control">
 <button id="musicBtn">🎵 Play Love Song ❤️</button>
 <audio id="loveSong" src="love_song.mp3"></audio>
+</div>
 
 <!-- START -->
 <div id="startPage" class="section active">
-<h1 style="font-family:'Great Vibes';font-size:70px;">For Nour ❤️</h1>
-<button class="start-btn" onclick="startSite()">✨ Start ✨</button>
+<div class="flower">
+<div class="petal"></div><div class="petal"></div>
+<div class="petal"></div><div class="petal"></div>
+<div class="petal"></div>
+<div class="center"></div>
+
+<button onclick="startSite()" style="background:deeppink;color:white;font-size:28px;">
+✨ Start ✨
+</button>
+</div>
 </div>
 
 <!-- PAGE 1 -->
 <div id="page1" class="section">
-<h1>Will you accept something special? ❤️</h1>
+<h1>Nour, will you accept something special that's only for you? ❤️</h1>
 <div>
 <button id="yesBtn">Yes 😍</button>
 <button id="noBtn">No 😅</button>
@@ -137,128 +155,121 @@ opacity:0;
 </div>
 
 <!-- PAGE 2 -->
-<div id="page2" class="section">
-<div class="love-bg"></div>
-<h1 style="font-family:'Great Vibes';font-size:55px;">
-I knew you’d say YES 😍
-</h1>
-<button onclick="showPage('page3')">Continue ❤️</button>
+<div id="page2" class="section cute-page">
+<div class="cute-bg"></div>
+<div class="cute-text">
+I knew you would say Yes 😍💖
+<br><br>
+<button onclick="goToLove()">Continue ❤️</button>
+</div>
 </div>
 
 <!-- LOVE PAGE -->
-<div id="page3" class="section">
+<div id="page3" class="section love-page">
+<img src="image2.jpg" class="love-img">
+
 <div class="love-text">
-<h2 style="font-family:'Great Vibes';font-size:50px;">For My Beautiful Nour ❤️</h2>
+<h2 style="font-family:'Great Vibes';font-size:40px;">For My Beautiful Nour ❤️</h2>
 <br>
-From the first moment I saw you, something changed inside me...
-You became my peace, my comfort, and my happiest feeling.
+Nour, From the first day I saw you, something inside me changed...
 <br><br>
 <b>No matter what happens, I will always love you 😍</b>
 <br><br>
-<button onclick="showPage('page4')" style="background:#ff2e63;color:white;">
-Secret 😳
-</button>
+<button onclick="showQuestions()" style="background:#ff2e63;color:white;">Secret 😳</button>
 </div>
 </div>
 
 <!-- QUESTIONS -->
 <div id="page4" class="section">
+<img src="image4.jpg" class="question-img">
 <h2>When did we fall in love? ❤️</h2>
 <input id="answer1" class="question-input">
-<button onclick="saveAnswer('answer1')">Save 💾</button>
-<button onclick="showPage('page5')">Next ➡</button>
+<button onclick="saveAnswer('answer1')">💾 Save</button>
+<button onclick="nextQuestion('page5')">Next ➡</button>
 </div>
 
 <div id="page5" class="section">
 <h2>A moment we can't describe 😍</h2>
 <input id="answer2" class="question-input">
-<button onclick="saveAnswer('answer2')">Save 💾</button>
-<button onclick="showPage('page6')">Next ➡</button>
+<button onclick="saveAnswer('answer2')">💾 Save</button>
+<button onclick="nextQuestion('page6')">Next ➡</button>
 </div>
 
 <div id="page6" class="section">
 <h2>A happy memory between us 💖</h2>
 <input id="answer3" class="question-input">
-<button onclick="saveAnswer('answer3')">Save 💾</button>
-<button onclick="showPage('page7')">Next ➡</button>
+<button onclick="saveAnswer('answer3')">💾 Save</button>
+<button onclick="nextQuestion('page7')">Next ➡</button>
 </div>
 
 <div id="page7" class="section">
 <h2>Tell me everything in your heart 💌</h2>
 <input id="answer4" class="question-input">
-<button onclick="saveAnswer('answer4')">Save 💾</button>
-<button onclick="finish()">Finish ❤️</button>
+<button onclick="saveAnswer('answer4')">💾 Save</button>
+<button onclick="nextQuestion('page8')">Finish ❤️</button>
 </div>
 
 <!-- FINAL -->
 <div id="page8" class="section">
 <h2>💌 Your Secret Answers 💌</h2>
-<div id="allAnswers" style="margin-top:20px;line-height:1.8;"></div>
-<button onclick="alert('I Love You 😘💖')" style="background:#ff2e63;color:white;">
-I Love You 😘
-</button>
+<div id="allAnswers"></div>
+<button onclick="iLoveYou()" style="background:#ff2e63;color:white;">I Love You 😘</button>
 </div>
 
 <script>
-const song=document.getElementById("loveSong");
-const musicBtn=document.getElementById("musicBtn");
+let song=document.getElementById("loveSong");
+let musicBtn=document.getElementById("musicBtn");
 let playing=false;
 
-/* PAGE SWITCH */
 function showPage(id){
 document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* START */
 function startSite(){
 showPage("page1");
-playMusic();
-}
-
-/* MUSIC */
-function playMusic(){
 song.play().catch(()=>{});
 playing=true;
-musicBtn.innerText="⏸️ Pause Love Song";
 }
 
-musicBtn.onclick=()=>{
-if(!playing){
-playMusic();
-}else{
-song.pause();
-playing=false;
-musicBtn.innerText="🎵 Play Love Song ❤️";
-}
-};
+document.getElementById("yesBtn").onclick=()=>showPage("page2");
 
-/* YES NO */
-let size=18,count=0;
-const funny=["Are you sure? 😢","Think again 😏","No escape 😂","Last chance 😍"];
+let size=20,count=0;
+let funny=["Are you sure? 😢","Think again 😏","You can't escape 😂","I won't give up 😌"];
 
 document.getElementById("noBtn").onclick=function(){
-size+=8;
-document.getElementById("yesBtn").style.fontSize=size+"px";
+size+=10;
+yesBtn.style.fontSize=size+"px";
 this.innerText=funny[count%funny.length];
 count++;
 };
-document.getElementById("yesBtn").onclick=()=>showPage("page2");
 
-/* SAVE */
+function goToLove(){showPage("page3");}
+function showQuestions(){showPage("page4");}
+
+function nextQuestion(id){
+showPage(id);
+if(id==="page8") showAnswers();
+}
+
+musicBtn.onclick=function(){
+if(!playing){
+song.play().catch(()=>{});
+playing=true;
+this.innerText="⏸️ Pause ❤️";
+}else{
+song.pause();
+playing=false;
+this.innerText="🎵 Play Love Song ❤️";
+}
+};
+
 function saveAnswer(id){
 localStorage.setItem(id,document.getElementById(id).value);
-alert("Saved 💖");
+alert("Saved! ✅");
 }
 
-for(let i=1;i<=4;i++){
-let v=localStorage.getItem("answer"+i);
-if(v) document.getElementById("answer"+i).value=v;
-}
-
-/* FINISH */
-function finish(){
-showPage("page8");
+function showAnswers(){
 document.getElementById("allAnswers").innerHTML=`
 <p>${localStorage.getItem("answer1")||""}</p>
 <p>${localStorage.getItem("answer2")||""}</p>
@@ -267,7 +278,9 @@ document.getElementById("allAnswers").innerHTML=`
 `;
 }
 
-/* FLOATING HEARTS */
+function iLoveYou(){alert("I Love You 😘💖");}
+
+/* hearts */
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
@@ -276,8 +289,12 @@ h.style.left=Math.random()*100+"vw";
 h.style.fontSize=(Math.random()*20+15)+"px";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
-},600);
+},400);
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
