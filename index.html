@@ -95,7 +95,7 @@ button:hover{transform:scale(1.1);}
     </div>
 </div>
 
-<!-- Pages 4-7: Questions -->
+<!-- Pages 4-7: Questions with Save + Next -->
 <div id="page4" class="section">
     <img src="image4.jpg" class="question-img">
     <h2>When did we fall in love? ❤️</h2>
@@ -184,7 +184,13 @@ function showQuestions(){
 }
 
 function nextQuestion(nextPageId){
-    document.querySelector('.section.active').classList.remove('active');
+    for(let i=4;i<=7;i++){
+        let page = document.getElementById('page'+i);
+        if(page.classList.contains('active')){
+            page.classList.remove('active');
+            break;
+        }
+    }
     document.getElementById(nextPageId).classList.add('active');
 }
 
@@ -233,8 +239,3 @@ function showAnswers(){
       <p><b>A moment we can't describe 😍</b><br>${localStorage.getItem('answer2') || 'No answer yet 😅'}</p>
       <p><b>A happy memory between us 💖</b><br>${localStorage.getItem('answer3') || 'No answer yet 😅'}</p>
       <p><b>Tell me everything in your heart 💌</b><br>${localStorage.getItem('answer4') || 'No answer yet 😅'}</p>
-    `;
-}
-</script>
-</body>
-</html>
