@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Nour ❤️</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;overflow:hidden;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;text-align:center;}
+body{font-family:'Poppins',sans-serif;overflow-x:hidden;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;text-align:center;}
 .section{display:none;height:100vh;width:100%;justify-content:center;align-items:center;flex-direction:column;position:relative;padding:20px;}
 .active{display:flex;}
 h1,h2{margin-bottom:20px;}
@@ -21,7 +19,7 @@ button:hover{transform:scale(1.1);}
 .cute-bg{position:absolute;top:0;left:0;width:100%;height:100%;background: url('image1.jpg') no-repeat center center;background-size: cover;filter: brightness(0.5);z-index:0;}
 .cute-text{position:relative;z-index:1;text-align:center;}
 .love-page{background:rgba(0,0,0,0.85);overflow-y:auto;}
-.love-text{max-width:800px;line-height:1.8;font-size:18px;z-index:2;}
+.love-text{max-width:800px;line-height:1.8;font-size:18px;z-index:2;position:relative;}
 .love-images{display:flex;justify-content:center;gap:20px;margin-bottom:20px;flex-wrap: wrap;}
 .love-img{width:150px;height:auto;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.4);}
 .question-img{width:200px;height:auto;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.4);margin-bottom:20px;}
@@ -33,7 +31,6 @@ button:hover{transform:scale(1.1);}
 #musicBtn:hover{transform:scale(1.05);}
 </style>
 </head>
-
 <body>
 
 <!-- Music Control -->
@@ -105,21 +102,18 @@ button:hover{transform:scale(1.1);}
     <input type="text" id="answer1" class="question-input" placeholder="Write your answer here...">
     <button onclick="saveAnswer('answer1')">💾 Save Answer</button>
 </div>
-
 <div id="page5" class="section">
     <img src="image4.jpg" class="question-img">
     <h2>A moment we can't describe 😍</h2>
     <input type="text" id="answer2" class="question-input" placeholder="Write your answer here...">
     <button onclick="saveAnswer('answer2')">💾 Save Answer</button>
 </div>
-
 <div id="page6" class="section">
     <img src="image4.jpg" class="question-img">
     <h2>A happy memory between us 💖</h2>
     <input type="text" id="answer3" class="question-input" placeholder="Write your answer here...">
     <button onclick="saveAnswer('answer3')">💾 Save Answer</button>
 </div>
-
 <div id="page7" class="section">
     <img src="image4.jpg" class="question-img">
     <h2>Tell me everything in your heart 💌</h2>
@@ -128,7 +122,6 @@ button:hover{transform:scale(1.1);}
 </div>
 
 <script>
-/* Start Button */
 let startPage = document.getElementById("startPage");
 let page1 = document.getElementById("page1");
 let page2 = document.getElementById("page2");
@@ -138,7 +131,7 @@ let loveSong = document.getElementById("loveSong");
 function startSite(){
     startPage.classList.remove("active");
     page1.classList.add("active");
-    loveSong.play(); // Play music on first interaction
+    loveSong.play();
 }
 
 /* Yes/No Buttons */
@@ -166,10 +159,10 @@ function goToLove(){
     page3.classList.add("active");
 }
 
-/* Secret button to show questions */
 function showQuestions(){
     page3.classList.remove("active");
     document.getElementById("page4").classList.add("active");
+    document.getElementById("page4").scrollTop = 0;
 }
 
 /* Floating hearts */
@@ -186,7 +179,6 @@ setInterval(()=>{
 /* Music Play/Pause */
 let musicBtn = document.getElementById("musicBtn");
 let isPlaying = false;
-
 musicBtn.addEventListener("click", ()=>{
     if(!isPlaying){
         loveSong.play();
@@ -205,13 +197,10 @@ function saveAnswer(id){
     localStorage.setItem(id, input.value);
     alert("Saved! ✅");
 }
-
-/* Load saved answers if any */
 for(let i=1;i<=4;i++){
     let ans = localStorage.getItem('answer'+i);
     if(ans) document.getElementById('answer'+i).value = ans;
 }
 </script>
-
 </body>
 </html>
