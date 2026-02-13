@@ -29,6 +29,7 @@ button:hover{transform:scale(1.1);}
 #music-control{position:fixed;top:10px;right:10px;z-index:9999;}
 #musicBtn{padding:10px 15px;font-size:14px;border-radius:10px;border:none;background:#ff2e63;color:white;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.3);transition:0.3s;}
 #musicBtn:hover{transform:scale(1.05);}
+
 /* Flower Start Page */
 .flower{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;}
 .petal{width:60px;height:60px;background:pink;border-radius:50%;position:absolute;opacity:0.8;box-shadow:0 0 20px hotpink,0 0 40px deeppink;animation:glow 2s infinite ease-in-out;}
@@ -39,6 +40,28 @@ button:hover{transform:scale(1.1);}
 .petal:nth-child(5){transform:rotate(288deg) translateY(-40px);}
 .center{width:30px;height:30px;background:deeppink;border-radius:50%;box-shadow:0 0 15px hotpink;z-index:1;}
 @keyframes glow{0%,100%{transform:scale(1);opacity:0.8;}50%{transform:scale(1.2);opacity:1;}}
+
+/* Glowing Floating Hearts for all pages */
+.glowing-heart {
+    position: absolute;
+    color: #ff2e63;
+    font-size: 20px;
+    opacity: 0.8;
+    text-shadow: 0 0 5px #ff2e63, 0 0 10px #ff4d82, 0 0 15px #ff85a2;
+    animation: floatHeart 6s linear infinite;
+}
+@keyframes floatHeart {
+    0% { transform: translateY(100vh) scale(0.8); opacity:0.8; }
+    50% { opacity:1; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity:0; }
+}
+
+/* Start Page hint */
+.start-hint {
+    font-size:16px;
+    color:#ff85a2;
+    margin-top:20px;
+}
 </style>
 </head>
 <body>
@@ -59,7 +82,7 @@ button:hover{transform:scale(1.1);}
         <div class="petal"></div>
         <div class="center"></div>
         <button onclick="startSite()" style="margin-top:220px;padding:15px 40px;font-size:22px;border:none;border-radius:50px;background:deeppink;color:white;cursor:pointer;box-shadow:0 0 20px hotpink;">✨ Start ✨</button>
-        <p style="margin-top:20px;color:#ff2e63;font-size:20px;">Be tough and press NO on everything! 😏</p>
+        <div class="start-hint">Keep pressing "No" on everything 😉 and just continue ❤️</div>
     </div>
 </div>
 
@@ -112,7 +135,7 @@ button:hover{transform:scale(1.1);}
     </div>
 </div>
 
-<!-- Pages 4-7: Questions with Save + Next + Back -->
+<!-- Pages 4-7: Questions -->
 <div id="page4" class="section">
     <img src="image4.jpg" class="question-img">
     <h2>When did we fall in love? ❤️</h2>
@@ -120,37 +143,33 @@ button:hover{transform:scale(1.1);}
     <div>
       <button onclick="saveAnswer('answer1')">💾 Save Answer</button>
       <button onclick="nextQuestion('page5')">➡ Next Question</button>
-      <button onclick="prevQuestion('page3')">⬅ Back</button>
     </div>
 </div>
 <div id="page5" class="section">
-    <img src="image5.jpg" class="question-img">
+    <img src="image4.jpg" class="question-img">
     <h2>A moment we can't describe 😍</h2>
     <input type="text" id="answer2" class="question-input" placeholder="Write your answer here...">
     <div>
       <button onclick="saveAnswer('answer2')">💾 Save Answer</button>
       <button onclick="nextQuestion('page6')">➡ Next Question</button>
-      <button onclick="prevQuestion('page4')">⬅ Back</button>
     </div>
 </div>
 <div id="page6" class="section">
-    <img src="image6.jpg" class="question-img">
+    <img src="image4.jpg" class="question-img">
     <h2>A happy memory between us 💖</h2>
     <input type="text" id="answer3" class="question-input" placeholder="Write your answer here...">
     <div>
       <button onclick="saveAnswer('answer3')">💾 Save Answer</button>
       <button onclick="nextQuestion('page7')">➡ Next Question</button>
-      <button onclick="prevQuestion('page5')">⬅ Back</button>
     </div>
 </div>
 <div id="page7" class="section">
-    <img src="image7.jpg" class="question-img">
+    <img src="image4.jpg" class="question-img">
     <h2>Tell me everything in your heart 💌</h2>
     <input type="text" id="answer4" class="question-input" placeholder="Write your answer here...">
     <div>
       <button onclick="saveAnswer('answer4')">💾 Save Answer</button>
       <button onclick="nextQuestion('page8')">➡ See All Answers</button>
-      <button onclick="prevQuestion('page6')">⬅ Back</button>
     </div>
 </div>
 
@@ -158,7 +177,7 @@ button:hover{transform:scale(1.1);}
 <div id="page8" class="section">
     <h2>💌 Your Secret Answers 💌</h2>
     <div id="allAnswers" style="margin-top:20px;line-height:1.8;font-size:18px;"></div>
-    <button onclick="showAnswers()">I Love You 😘</button>
+    <button onclick="showAnswers()" style="margin-top:20px;padding:12px 25px;font-size:18px;border-radius:15px;border:none;background:#ff2e63;color:white;cursor:pointer;">I Love You 😘</button>
 </div>
 
 <script>
@@ -210,14 +229,6 @@ function nextQuestion(nextPageId){
     document.getElementById(nextPageId).classList.add('active');
 }
 
-function prevQuestion(prevPageId){
-    for(let i=4;i<=7;i++){
-        let page = document.getElementById('page'+i);
-        if(page.classList.contains('active')){ page.classList.remove('active'); break; }
-    }
-    document.getElementById(prevPageId).classList.add('active');
-}
-
 /* Floating hearts */
 setInterval(()=>{
     let heart=document.createElement("div");
@@ -228,6 +239,17 @@ setInterval(()=>{
     document.body.appendChild(heart);
     setTimeout(()=>{heart.remove();},6000);
 },300);
+
+/* Glowing hearts on all pages */
+setInterval(()=>{
+    let heart = document.createElement("div");
+    heart.className = "glowing-heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 25 + 15) + "px";
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); }, 6000);
+}, 400);
 
 /* Music Play/Pause */
 let musicBtn = document.getElementById("musicBtn");
@@ -261,4 +283,5 @@ function showAnswers(){
 </script>
 </body>
 </html>
+
 
