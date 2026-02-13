@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;overflow-x:hidden;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;text-align:center;}
+body{font-family:'Poppins',sans-serif;overflow-x:hidden;color:white;text-align:center;background:black;}
 .section{display:none;height:100vh;width:100%;justify-content:center;align-items:center;flex-direction:column;position:relative;padding:20px;}
 .active{display:flex;}
 h1,h2{margin-bottom:20px;}
@@ -29,6 +29,16 @@ button:hover{transform:scale(1.1);}
 #music-control{position:fixed;top:10px;right:10px;z-index:9999;}
 #musicBtn{padding:10px 15px;font-size:14px;border-radius:10px;border:none;background:#ff2e63;color:white;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.3);transition:0.3s;}
 #musicBtn:hover{transform:scale(1.05);}
+/* Flower Start Page */
+.flower{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;}
+.petal{width:60px;height:60px;background:pink;border-radius:50%;position:absolute;opacity:0.8;box-shadow:0 0 20px hotpink,0 0 40px deeppink;animation:glow 2s infinite ease-in-out;}
+.petal:nth-child(1){transform:rotate(0deg) translateY(-40px);}
+.petal:nth-child(2){transform:rotate(72deg) translateY(-40px);}
+.petal:nth-child(3){transform:rotate(144deg) translateY(-40px);}
+.petal:nth-child(4){transform:rotate(216deg) translateY(-40px);}
+.petal:nth-child(5){transform:rotate(288deg) translateY(-40px);}
+.center{width:30px;height:30px;background:deeppink;border-radius:50%;box-shadow:0 0 15px hotpink;z-index:1;}
+@keyframes glow{0%,100%{transform:scale(1);opacity:0.8;}50%{transform:scale(1.2);opacity:1;}}
 </style>
 </head>
 <body>
@@ -41,8 +51,15 @@ button:hover{transform:scale(1.1);}
 
 <!-- Start Page -->
 <div id="startPage" class="section active">
-    <h1>Press Start ❤️</h1>
-    <button onclick="startSite()">✨ Start ✨</button>
+    <div class="flower">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+        <button onclick="startSite()" style="margin-top:220px;padding:15px 40px;font-size:22px;border:none;border-radius:50px;background:deeppink;color:white;cursor:pointer;box-shadow:0 0 20px hotpink;">✨ Start ✨</button>
+    </div>
 </div>
 
 <!-- Page 1: Yes/No -->
@@ -67,7 +84,7 @@ button:hover{transform:scale(1.1);}
 <!-- Page 3: Love Message -->
 <div id="page3" class="section love-page">
     <div class="love-images">
-        <img src="image2.jpg" class="love-img" 
+        <img src="image2.jpg" class="love-img">
     </div>
     <div class="love-text">
         <h2 style="font-family:'Great Vibes',cursive;font-size:40px;">For My Beautiful Nour ❤️</h2>
@@ -157,7 +174,6 @@ let yesBtn=document.getElementById("yesBtn");
 let size=20;
 let funnyTexts=["Are you sure? 😢","Think again 😏","You can't escape me 😂","I won't give up 😌","Last chance 😍"];
 let count=0;
-
 noBtn.addEventListener("click",function(){
     size+=10;
     yesBtn.style.fontSize=size+"px";
@@ -165,7 +181,6 @@ noBtn.addEventListener("click",function(){
     noBtn.innerText=funnyTexts[count%funnyTexts.length];
     count++;
 });
-
 yesBtn.addEventListener("click",function(){
     page1.classList.remove("active");
     page2.classList.add("active");
@@ -185,10 +200,7 @@ function showQuestions(){
 function nextQuestion(nextPageId){
     for(let i=4;i<=7;i++){
         let page = document.getElementById('page'+i);
-        if(page.classList.contains('active')){
-            page.classList.remove('active');
-            break;
-        }
+        if(page.classList.contains('active')){ page.classList.remove('active'); break; }
     }
     document.getElementById(nextPageId).classList.add('active');
 }
@@ -208,15 +220,8 @@ setInterval(()=>{
 let musicBtn = document.getElementById("musicBtn");
 let isPlaying = false;
 musicBtn.addEventListener("click", ()=>{
-    if(!isPlaying){
-        loveSong.play();
-        musicBtn.innerText = "⏸️ Pause - From Yours, Ahmed ❤️";
-        isPlaying = true;
-    } else {
-        loveSong.pause();
-        musicBtn.innerText = "🎵 Play Love Song - From Yours, Ahmed ❤️";
-        isPlaying = false;
-    }
+    if(!isPlaying){ loveSong.play(); musicBtn.innerText = "⏸️ Pause - From Yours, Ahmed ❤️"; isPlaying=true; }
+    else{ loveSong.pause(); musicBtn.innerText = "🎵 Play Love Song - From Yours, Ahmed ❤️"; isPlaying=false; }
 });
 
 /* Save Answers */
