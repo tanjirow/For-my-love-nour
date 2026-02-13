@@ -30,18 +30,19 @@ button:hover{transform:scale(1.1);}
 #musicBtn:hover{transform:scale(1.05);}
 
 /* Flower Start Page */
-.flower{position:relative;display:flex;flex-direction:column;align-items:center;}
+.start-flower{position:relative;display:flex;flex-direction:column;align-items:center;margin-bottom:30px;}
 .petal{width:60px;height:60px;background:pink;border-radius:50%;position:absolute;opacity:0.8;box-shadow:0 0 20px hotpink,0 0 40px deeppink;animation:glow 2s infinite ease-in-out;}
-.petal:nth-child(1){transform:rotate(0deg) translateY(-60px);}
-.petal:nth-child(2){transform:rotate(72deg) translateY(-60px);}
-.petal:nth-child(3){transform:rotate(144deg) translateY(-60px);}
-.petal:nth-child(4){transform:rotate(216deg) translateY(-60px);}
-.petal:nth-child(5){transform:rotate(288deg) translateY(-60px);}
-.center{width:50px;height:50px;background:deeppink;border-radius:50%;box-shadow:0 0 25px hotpink;z-index:1;margin-bottom:20px;}
+.petal:nth-child(1){transform:rotate(0deg) translateY(-80px);}
+.petal:nth-child(2){transform:rotate(72deg) translateY(-80px);}
+.petal:nth-child(3){transform:rotate(144deg) translateY(-80px);}
+.petal:nth-child(4){transform:rotate(216deg) translateY(-80px);}
+.petal:nth-child(5){transform:rotate(288deg) translateY(-80px);}
+.center{width:60px;height:60px;background:deeppink;border-radius:50%;box-shadow:0 0 25px hotpink;z-index:1;margin-bottom:40px;}
 .start-text{font-size:22px;margin-top:15px;color:white;max-width:300px;line-height:1.4;text-align:center;}
 
 /* Floating hearts animation */
 @keyframes float{0%{transform:translateY(100vh);opacity:1;}100%{transform:translateY(-120vh);opacity:0;}}
+@keyframes glow{0%,100%{transform:scale(1);opacity:0.8;}50%{transform:scale(1.2);opacity:1;}}
 </style>
 </head>
 <body>
@@ -54,14 +55,14 @@ button:hover{transform:scale(1.1);}
 
 <!-- Start Page -->
 <div id="startPage" class="section active">
-    <div class="flower">
+    <div class="start-flower">
         <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
         <div class="center"></div>
-        <button onclick="startSite()" style="margin-top:20px;padding:20px 50px;font-size:28px;border:none;border-radius:50px;background:deeppink;color:white;cursor:pointer;box-shadow:0 0 25px hotpink;">✨ Start ✨</button>
+        <button onclick="startSite()" style="padding:20px 50px;font-size:28px;border:none;border-radius:50px;background:deeppink;color:white;cursor:pointer;box-shadow:0 0 25px hotpink;">✨ Start ✨</button>
         <div class="start-text">Stay strong and press "No" on everything, then continue like this 💖</div>
     </div>
 </div>
@@ -209,7 +210,7 @@ function nextQuestion(nextPageId){
     document.getElementById(nextPageId).classList.add('active');
 }
 
-/* Floating hearts full page */
+/* Floating hearts */
 setInterval(()=>{
     let heart=document.createElement("div");
     heart.className="heart";
@@ -261,6 +262,7 @@ function showAnswers(){
 
 /* I Love You button */
 function iLoveYou(){
+    showAnswers(); // First, show answers
     alert("I Love You 😘💖");
 }
 </script>
