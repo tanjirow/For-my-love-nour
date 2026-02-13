@@ -224,30 +224,31 @@ function prevQuestion(prevPageId){
     document.getElementById(prevPageId).classList.add('active');
 }
 
-/* Floating hearts - visible all the way to top */
+/* Floating hearts full page */
 setInterval(()=>{
     let heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "❤️";
-    heart.style.position = "fixed"; // فوق كل شيء
+    heart.style.position = "fixed"; // فوق كل العناصر
     heart.style.left = Math.random()*100 + "vw"; // موقع عشوائي أفقي
     heart.style.top = "100vh"; // تبدأ من تحت الشاشة
     heart.style.fontSize = (Math.random()*25 + 20) + "px";
     heart.style.zIndex = 9999; // فوق كل العناصر
-    heart.style.opacity = 0.8;
+    heart.style.opacity = 1; // تبدأ ظاهرة بالكامل
     heart.style.transition = "transform 6s linear, opacity 6s linear"; // حركة وانخفاض تدريجي في الشفافية
 
     document.body.appendChild(heart);
 
-    // تحريك القلب للأعلى
+    // تحريك القلب للأعلى لمسافة أكبر من طول الشاشة
     setTimeout(()=>{
-        heart.style.transform = "translateY(-110vh)"; // تصعد فوق الشاشة
-        heart.style.opacity = 0; // تختفي تدريجي
+        heart.style.transform = "translateY(-120vh)"; // تصعد فوق الصفحة بالكامل
+        heart.style.opacity = 0; // تتلاشى تدريجي
     }, 50);
 
     // إزالة القلب بعد انتهاء الحركة
     setTimeout(()=>{heart.remove();}, 6000);
 }, 300);
+
 
 /* Music Play/Pause */
 let musicBtn = document.getElementById("musicBtn");
