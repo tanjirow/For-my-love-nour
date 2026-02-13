@@ -98,17 +98,20 @@ button:hover{
     text-align:center;
 }
 
-/* Love page */
-.love-page{
-    background:rgba(0,0,0,0.85);
-    overflow-y:auto;
+/* Love Page adjustments */
+.love-images{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-bottom:20px;
+    flex-wrap: wrap;
 }
 
-.love-text{
-    max-width:800px;
-    line-height:1.8;
-    font-size:18px;
-    z-index:2;
+.love-img{
+    width:150px;  /* حجم الصورة */
+    height:auto;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.4);
 }
 
 /* Background Images */
@@ -172,9 +175,10 @@ iframe{
 <!-- Page 3 -->
 <div id="page3" class="section love-page">
 
-    <img src="image1.jpg" class="bg-img img1">
-    <img src="image2.jpg" class="bg-img img2">
-    <img src="image3.jpg" class="bg-img img3">
+    <div class="love-images">
+        <img src="image2.jpg" class="love-img">
+        <img src="image3.jpg" class="love-img">
+    </div>
 
     <div class="love-text">
         <h2 style="font-family:'Great Vibes',cursive;font-size:40px;">For My Beautiful Nour ❤️</h2>
