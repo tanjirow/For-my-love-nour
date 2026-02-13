@@ -12,11 +12,11 @@
 body{font-family:'Poppins',sans-serif;overflow:hidden;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;text-align:center;}
 .section{display:none;height:100vh;width:100%;justify-content:center;align-items:center;flex-direction:column;position:relative;padding:20px;}
 .active{display:flex;}
-h1{font-size:28px;margin-bottom:30px;}
+h1,h2{margin-bottom:20px;}
 button{padding:15px 35px;font-size:20px;border:none;border-radius:50px;cursor:pointer;margin:10px;transition:0.3s;}
+button:hover{transform:scale(1.1);}
 #yesBtn{background:#ff2e63;color:white;}
 #noBtn{background:white;color:#ff2e63;}
-button:hover{transform:scale(1.1);}
 .cute-page{position:relative;font-family:'Great Vibes',cursive;font-size:40px;color:white;justify-content:center;align-items:center;}
 .cute-bg{position:absolute;top:0;left:0;width:100%;height:100%;background: url('image1.jpg') no-repeat center center;background-size: cover;filter: brightness(0.5);z-index:0;}
 .cute-text{position:relative;z-index:1;text-align:center;}
@@ -24,6 +24,8 @@ button:hover{transform:scale(1.1);}
 .love-text{max-width:800px;line-height:1.8;font-size:18px;z-index:2;}
 .love-images{display:flex;justify-content:center;gap:20px;margin-bottom:20px;flex-wrap: wrap;}
 .love-img{width:150px;height:auto;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.4);}
+.question-img{width:200px;height:auto;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.4);margin-bottom:20px;}
+.question-input{padding:10px 15px;border-radius:10px;border:none;width:80%;max-width:400px;margin-bottom:10px;font-size:16px;}
 .heart{position:absolute;color:white;font-size:20px;animation:float 6s linear infinite;}
 @keyframes float{0%{transform:translateY(100vh);opacity:1;}100%{transform:translateY(-10vh);opacity:0;}}
 #music-control{position:fixed;top:10px;right:10px;z-index:9999;}
@@ -34,14 +36,20 @@ button:hover{transform:scale(1.1);}
 
 <body>
 
-<!-- Music Control Button -->
+<!-- Music Control -->
 <div id="music-control">
     <button id="musicBtn">🎵 Play Love Song - From Yours, Ahmed ❤️</button>
     <audio id="loveSong" src="love_song.mp3"></audio>
 </div>
 
-<!-- Page 1 -->
-<div id="page1" class="section active">
+<!-- Start Page -->
+<div id="startPage" class="section active">
+    <h1>Press Start ❤️</h1>
+    <button onclick="startSite()">✨ Start ✨</button>
+</div>
+
+<!-- Page 1: Yes/No -->
+<div id="page1" class="section">
     <h1>Nour, will you accept something special that's only for you on this day? ❤️</h1>
     <div>
         <button id="yesBtn">Yes 😍</button>
@@ -49,7 +57,7 @@ button:hover{transform:scale(1.1);}
     </div>
 </div>
 
-<!-- Page 2 -->
+<!-- Page 2: Cute -->
 <div id="page2" class="section cute-page">
     <div class="cute-bg"></div>
     <div class="cute-text">
@@ -59,14 +67,12 @@ button:hover{transform:scale(1.1);}
     </div>
 </div>
 
-<!-- Page 3 -->
+<!-- Page 3: Love Message -->
 <div id="page3" class="section love-page">
-
     <div class="love-images">
         <img src="image2.jpg" class="love-img">
         <img src="image3.jpg" class="love-img">
     </div>
-
     <div class="love-text">
         <h2 style="font-family:'Great Vibes',cursive;font-size:40px;">For My Beautiful Nour ❤️</h2>
         <br>
@@ -90,11 +96,54 @@ button:hover{transform:scale(1.1);}
     </div>
 </div>
 
+<!-- Pages 4-7: Questions -->
+<div id="page4" class="section">
+    <img src="image4.jpg" class="question-img">
+    <h2>When did we fall in love? ❤️</h2>
+    <input type="text" id="answer1" class="question-input" placeholder="Write your answer here...">
+    <button onclick="saveAnswer('answer1')">💾 Save Answer</button>
+</div>
+
+<div id="page5" class="section">
+    <img src="image4.jpg" class="question-img">
+    <h2>A moment we can't describe 😍</h2>
+    <input type="text" id="answer2" class="question-input" placeholder="Write your answer here...">
+    <button onclick="saveAnswer('answer2')">💾 Save Answer</button>
+</div>
+
+<div id="page6" class="section">
+    <img src="image4.jpg" class="question-img">
+    <h2>A happy memory between us 💖</h2>
+    <input type="text" id="answer3" class="question-input" placeholder="Write your answer here...">
+    <button onclick="saveAnswer('answer3')">💾 Save Answer</button>
+</div>
+
+<div id="page7" class="section">
+    <img src="image4.jpg" class="question-img">
+    <h2>Tell me everything in your heart 💌</h2>
+    <input type="text" id="answer4" class="question-input" placeholder="Write your answer here...">
+    <button onclick="saveAnswer('answer4')">💾 Save Answer</button>
+</div>
+
 <script>
+/* Start Button */
+let startPage = document.getElementById("startPage");
+let page1 = document.getElementById("page1");
+let loveSong = document.getElementById("loveSong");
+
+function startSite(){
+    startPage.classList.remove("active");
+    page1.classList.add("active");
+    loveSong.play(); // Play music on first interaction
+}
+
+/* Yes/No Buttons */
 let noBtn=document.getElementById("noBtn");
 let yesBtn=document.getElementById("yesBtn");
+let page2 = document.getElementById("page2");
+let page3 = document.getElementById("page3");
 let size=20;
-let funnyTexts=["Are you sure? 😢","Think again 😏","You can’t escape me 😂","I won’t give up 😌","Last chance 😍"];
+let funnyTexts=["Are you sure? 😢","Think again 😏","You can't escape me 😂","I won't give up 😌","Last chance 😍"];
 let count=0;
 
 noBtn.addEventListener("click",function(){
@@ -106,13 +155,13 @@ noBtn.addEventListener("click",function(){
 });
 
 yesBtn.addEventListener("click",function(){
-    document.getElementById("page1").classList.remove("active");
-    document.getElementById("page2").classList.add("active");
+    page1.classList.remove("active");
+    page2.classList.add("active");
 });
 
 function goToLove(){
-    document.getElementById("page2").classList.remove("active");
-    document.getElementById("page3").classList.add("active");
+    page2.classList.remove("active");
+    page3.classList.add("active");
 }
 
 /* Floating hearts */
@@ -128,7 +177,6 @@ setInterval(()=>{
 
 /* Music Play/Pause */
 let musicBtn = document.getElementById("musicBtn");
-let loveSong = document.getElementById("loveSong");
 let isPlaying = false;
 
 musicBtn.addEventListener("click", ()=>{
@@ -142,6 +190,19 @@ musicBtn.addEventListener("click", ()=>{
         isPlaying = false;
     }
 });
+
+/* Save Answers to LocalStorage */
+function saveAnswer(id){
+    let input = document.getElementById(id);
+    localStorage.setItem(id, input.value);
+    alert("Saved! ✅");
+}
+
+/* Load saved answers if any */
+for(let i=1;i<=4;i++){
+    let ans = localStorage.getItem('answer'+i);
+    if(ans) document.getElementById('answer'+i).value = ans;
+}
 </script>
 
 </body>
