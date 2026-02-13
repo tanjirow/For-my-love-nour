@@ -224,31 +224,17 @@ function prevQuestion(prevPageId){
     document.getElementById(prevPageId).classList.add('active');
 }
 
-/* Floating hearts full page */
+/* Floating hearts */
 setInterval(()=>{
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.position = "fixed"; // فوق كل العناصر
-    heart.style.left = Math.random()*100 + "vw"; // موقع عشوائي أفقي
-    heart.style.top = "100vh"; // تبدأ من تحت الشاشة
-    heart.style.fontSize = (Math.random()*25 + 20) + "px";
-    heart.style.zIndex = 9999; // فوق كل العناصر
-    heart.style.opacity = 1; // تبدأ ظاهرة بالكامل
-    heart.style.transition = "transform 6s linear, opacity 6s linear"; // حركة وانخفاض تدريجي في الشفافية
-
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*25+15)+"px";
+    heart.style.color=["#ff2e63","#ff69b4","#ffb6c1","#ff1493"][Math.floor(Math.random()*4)];
     document.body.appendChild(heart);
-
-    // تحريك القلب للأعلى لمسافة أكبر من طول الشاشة
-    setTimeout(()=>{
-        heart.style.transform = "translateY(-120vh)"; // تصعد فوق الصفحة بالكامل
-        heart.style.opacity = 0; // تتلاشى تدريجي
-    }, 50);
-
-    // إزالة القلب بعد انتهاء الحركة
-    setTimeout(()=>{heart.remove();}, 6000);
-}, 300);
-
+    setTimeout(()=>{heart.remove();},6000);
+},300);
 
 /* Music Play/Pause */
 let musicBtn = document.getElementById("musicBtn");
