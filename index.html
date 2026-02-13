@@ -38,8 +38,6 @@ button:hover{transform:scale(1.1);}
 .petal:nth-child(5){transform:rotate(288deg) translateY(-40px);}
 .center{width:30px;height:30px;background:deeppink;border-radius:50%;box-shadow:0 0 15px hotpink;z-index:1;}
 @keyframes glow{0%,100%{transform:scale(1);opacity:0.8;}50%{transform:scale(1.2);opacity:1;}}
-.backBtn{padding:8px 15px;font-size:14px;border-radius:10px;border:none;background:#444;color:white;cursor:pointer;margin-top:10px;}
-.backBtn:hover{background:#666;}
 </style>
 </head>
 <body>
@@ -70,7 +68,6 @@ button:hover{transform:scale(1.1);}
         <button id="yesBtn">Yes 😍</button>
         <button id="noBtn">No 😅</button>
     </div>
-    <button class="backBtn" onclick="goBack('startPage')">⬅ Back</button>
 </div>
 
 <!-- Page 2: Cute -->
@@ -80,8 +77,6 @@ button:hover{transform:scale(1.1);}
         I knew you would say Yes 😍💖
         <br><br>
         <button onclick="goToLove()">Continue ❤️</button>
-        <br><br>
-        <button class="backBtn" onclick="goBack('page1')">⬅ Back</button>
     </div>
 </div>
 
@@ -92,27 +87,30 @@ button:hover{transform:scale(1.1);}
     </div>
     <div class="love-text">
         <h2 style="font-family:'Great Vibes',cursive;font-size:40px;">For My Beautiful Nour ❤️</h2>
-        <p>Nour, From the first day I saw you, something inside me changed...
+        <br>
+        Nour, From the first day I saw you, something inside me changed...
         It wasn’t just your smile or your beautiful eyes, it was the peace I felt when I was around you.
-        Since that day until now, you’ve never left my heart, not even for a second.</p>
-        <p>I didn’t choose to love you. My heart chose you on its own.
+        Since that day until now, you’ve never left my heart, not even for a second.
+        <br><br>
+        I didn’t choose to love you. My heart chose you on its own.
         Every day with you feels like a blessing.
-        You’re not just my girlfriend, you’re my comfort, my happiness, and the best thing that ever happened to me.</p>
-        <p>Your name truly fits you, Nour.
+        You’re not just my girlfriend, you’re my comfort, my happiness, and the best thing that ever happened to me.
+        <br><br>
+        Your name truly fits you, Nour.
         You are the light that came into my life and made everything brighter and calmer.
-        You became part of my everyday life, from my first thought in the morning to my last thought before I sleep.</p>
-        <p>This Valentine’s Day, I just want you to know that my love for you isn’t just words.
+        You became part of my everyday life, from my first thought in the morning to my last thought before I sleep.
+        <br><br>
+        This Valentine’s Day, I just want you to know that my love for you isn’t just words.
         It’s something that grows stronger inside me every single day.
-        From the first moment I loved you until now, and for all the days to come, you mean everything to me.</p>
+        From the first moment I loved you until now, and for all the days to come, you mean everything to me.
+        <br><br>
         <b>No matter what happens, I will always love you 😍</b>
         <br><br>
-        <button onclick="showQuestions()">Secret 😳</button>
-        <br><br>
-        <button class="backBtn" onclick="goBack('page2')">⬅ Back</button>
+        <button onclick="showQuestions()" style="margin-top:20px;padding:10px 20px;font-size:16px;border-radius:10px;border:none;background:#ff2e63;color:white;cursor:pointer;">Secret 😳</button>
     </div>
 </div>
 
-<!-- Pages 4-7: Questions with Save + Next and Back -->
+<!-- Pages 4-7: Questions with Save + Next + Back + different images -->
 <div id="page4" class="section">
     <img src="image4.jpg" class="question-img">
     <h2>When did we fall in love? ❤️</h2>
@@ -120,7 +118,7 @@ button:hover{transform:scale(1.1);}
     <div>
       <button onclick="saveAnswer('answer1')">💾 Save Answer</button>
       <button onclick="nextQuestion('page5')">➡ Next Question</button>
-      <button class="backBtn" onclick="goBack('page3')">⬅ Back</button>
+      <button onclick="goBack('page3')">⬅ Back</button>
     </div>
 </div>
 <div id="page5" class="section">
@@ -130,7 +128,7 @@ button:hover{transform:scale(1.1);}
     <div>
       <button onclick="saveAnswer('answer2')">💾 Save Answer</button>
       <button onclick="nextQuestion('page6')">➡ Next Question</button>
-      <button class="backBtn" onclick="goBack('page4')">⬅ Back</button>
+      <button onclick="goBack('page4')">⬅ Back</button>
     </div>
 </div>
 <div id="page6" class="section">
@@ -140,7 +138,7 @@ button:hover{transform:scale(1.1);}
     <div>
       <button onclick="saveAnswer('answer3')">💾 Save Answer</button>
       <button onclick="nextQuestion('page7')">➡ Next Question</button>
-      <button class="backBtn" onclick="goBack('page5')">⬅ Back</button>
+      <button onclick="goBack('page5')">⬅ Back</button>
     </div>
 </div>
 <div id="page7" class="section">
@@ -150,7 +148,7 @@ button:hover{transform:scale(1.1);}
     <div>
       <button onclick="saveAnswer('answer4')">💾 Save Answer</button>
       <button onclick="nextQuestion('page8')">➡ See All Answers</button>
-      <button class="backBtn" onclick="goBack('page6')">⬅ Back</button>
+      <button onclick="goBack('page6')">⬅ Back</button>
     </div>
 </div>
 
@@ -159,8 +157,6 @@ button:hover{transform:scale(1.1);}
     <h2>💌 Your Secret Answers 💌</h2>
     <div id="allAnswers" style="margin-top:20px;line-height:1.8;font-size:18px;"></div>
     <button onclick="showAnswers()">See Secret Answers ❤️</button>
-    <br><br>
-    <button class="backBtn" onclick="goBack('page7')">⬅ Back</button>
 </div>
 
 <script>
@@ -261,3 +257,4 @@ function showAnswers(){
 </script>
 </body>
 </html>
+
