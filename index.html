@@ -4,267 +4,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Nour ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;overflow-x:hidden;color:white;text-align:center;background:black;}
-.section{display:none;height:100vh;width:100%;justify-content:center;align-items:center;flex-direction:column;position:relative;padding:20px;}
+body{font-family:Arial;background:black;color:white;text-align:center;overflow-x:hidden;}
+.section{display:none;height:100vh;justify-content:center;align-items:center;flex-direction:column;padding:20px;}
 .active{display:flex;}
-h1,h2{margin-bottom:20px;}
-button{padding:15px 35px;font-size:20px;border:none;border-radius:50px;cursor:pointer;margin:10px;transition:0.3s;}
-button:hover{transform:scale(1.1);}
-#yesBtn{background:#ff2e63;color:white;}
-#noBtn{background:white;color:#ff2e63;}
-.cute-page{position:relative;font-family:'Great Vibes',cursive;font-size:40px;color:white;justify-content:center;align-items:center;}
-.cute-bg{position:absolute;top:0;left:0;width:100%;height:100%;background: url('image1.jpg') no-repeat center center;background-size: cover;filter: brightness(0.5);z-index:0;}
-.cute-text{position:relative;z-index:1;text-align:center;}
-.love-page{background:rgba(0,0,0,0.85);overflow-y:auto;}
-.love-text{max-width:800px;line-height:1.8;font-size:18px;z-index:2;position:relative;}
-.love-images{display:flex;justify-content:center;gap:20px;margin-bottom:20px;flex-wrap: wrap;}
-.love-img{width:150px;height:auto;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.4);}
-.question-img{width:200px;height:auto;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.4);margin-bottom:20px;}
-.question-input{padding:10px 15px;border-radius:10px;border:none;width:80%;max-width:400px;margin-bottom:10px;font-size:16px;}
-.heart{position:fixed;color:white;font-size:20px;animation:float 6s linear infinite;z-index:9999;}
-#music-control{position:fixed;top:10px;right:10px;z-index:9999;}
-#musicBtn{padding:10px 15px;font-size:14px;border-radius:10px;border:none;background:#ff2e63;color:white;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.3);transition:0.3s;}
-#musicBtn:hover{transform:scale(1.05);}
 
-/* Flower Start Page */
-.start-flower{position:relative;display:flex;flex-direction:column;align-items:center;margin-bottom:30px;}
-.petal{width:60px;height:60px;background:pink;border-radius:50%;position:absolute;opacity:0.8;box-shadow:0 0 20px hotpink,0 0 40px deeppink;animation:glow 2s infinite ease-in-out;}
-.petal:nth-child(1){transform:rotate(0deg) translateY(-80px);}
-.petal:nth-child(2){transform:rotate(72deg) translateY(-80px);}
-.petal:nth-child(3){transform:rotate(144deg) translateY(-80px);}
-.petal:nth-child(4){transform:rotate(216deg) translateY(-80px);}
-.petal:nth-child(5){transform:rotate(288deg) translateY(-80px);}
-.center{width:60px;height:60px;background:deeppink;border-radius:50%;box-shadow:0 0 25px hotpink;z-index:1;margin-bottom:40px;}
-.start-text{font-size:22px;margin-top:15px;color:white;max-width:300px;line-height:1.4;text-align:center;}
+button{
+padding:12px 25px;
+margin:8px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-size:16px;
+}
 
-/* Floating hearts animation */
-@keyframes float{0%{transform:translateY(100vh);opacity:1;}100%{transform:translateY(-120vh);opacity:0;}}
-@keyframes glow{0%,100%{transform:scale(1);opacity:0.8;}50%{transform:scale(1.2);opacity:1;}}
+.backBtn{
+background:#444;
+color:white;
+position:absolute;
+top:20px;
+left:20px;
+}
+
+.question-input{
+padding:10px;
+width:80%;
+max-width:400px;
+border-radius:10px;
+border:none;
+margin:10px;
+}
 </style>
 </head>
+
 <body>
 
-<!-- Music Control -->
-<div id="music-control">
-    <button id="musicBtn">🎵 Play Love Song - From Yours, Ahmed ❤️</button>
-    <audio id="loveSong" src="love_song.mp3"></audio>
-</div>
-
-<!-- Start Page -->
+<!-- START -->
 <div id="startPage" class="section active">
-    <div class="start-flower">
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="center"></div>
-        <button onclick="startSite()" style="padding:20px 50px;font-size:28px;border:none;border-radius:50px;background:deeppink;color:white;cursor:pointer;box-shadow:0 0 25px hotpink;">✨ Start ✨</button>
-        <div class="start-text">Stay strong and press "No" on everything, then continue like this 💖</div>
-    </div>
+<h1>✨ Start ✨</h1>
+<button onclick="go('page1')">Start</button>
 </div>
 
-<!-- Page 1: Yes/No -->
+<!-- PAGE 1 -->
 <div id="page1" class="section">
-    <h1>Nour, will you accept something special that's only for you on this day? ❤️</h1>
-    <div>
-        <button id="yesBtn">Yes 😍</button>
-        <button id="noBtn">No 😅</button>
-    </div>
+<button class="backBtn" onclick="go('startPage')">⬅ Back</button>
+<h2>Will you accept something special? ❤️</h2>
+<button onclick="go('page2')">Yes 😍</button>
+<button>No 😅</button>
 </div>
 
-<!-- Page 2: Cute -->
-<div id="page2" class="section cute-page">
-    <div class="cute-bg"></div>
-    <div class="cute-text">
-        I knew you would say Yes 😍💖
-        <br><br>
-        <button onclick="goToLove()">Continue ❤️</button>
-    </div>
+<!-- PAGE 2 -->
+<div id="page2" class="section">
+<button class="backBtn" onclick="go('page1')">⬅ Back</button>
+<h2>I knew you would say yes 😍</h2>
+<button onclick="go('page3')">Continue ❤️</button>
 </div>
 
-<!-- Page 3: Love Message -->
-<div id="page3" class="section love-page">
-    <div class="love-images">
-        <img src="image2.jpg" class="love-img">
-    </div>
-    <div class="love-text">
-        <h2 style="font-family:'Great Vibes',cursive;font-size:40px;">For My Beautiful Nour ❤️</h2>
-        <br>
-        Nour, From the first day I saw you, something inside me changed...
-        It wasn’t just your smile or your beautiful eyes, it was the peace I felt when I was around you.
-        Since that day until now, you’ve never left my heart, not even for a second.
-        <br><br>
-        I didn’t choose to love you. My heart chose you on its own.
-        Every day with you feels like a blessing.
-        You’re not just my girlfriend, you’re my comfort, my happiness, and the best thing that ever happened to me.
-        <br><br>
-        Your name truly fits you, Nour.
-        You are the light that came into my life and made everything brighter and calmer.
-        You became part of my everyday life, from my first thought in the morning to my last thought before I sleep.
-        <br><br>
-        This Valentine’s Day, I just want you to know that my love for you isn’t just words.
-        It’s something that grows stronger inside me every single day.
-        From the first moment I loved you until now, and for all the days to come, you mean everything to me.
-        <br><br>
-        <b>No matter what happens, I will always love you 😍</b>
-        <br><br>
-        <button onclick="showQuestions()" style="margin-top:20px;padding:10px 20px;font-size:16px;border-radius:10px;border:none;background:#ff2e63;color:white;cursor:pointer;">Secret 😳</button>
-    </div>
+<!-- PAGE 3 -->
+<div id="page3" class="section">
+<button class="backBtn" onclick="go('page2')">⬅ Back</button>
+<h2>Love Message ❤️</h2>
+<button onclick="go('page4')">Secret 😳</button>
 </div>
 
-<!-- Pages 4-7: Questions with Save + Next -->
+<!-- QUESTIONS -->
 <div id="page4" class="section">
-    <img src="image4.jpg" class="question-img">
-    <h2>When did we fall in love? ❤️</h2>
-    <input type="text" id="answer1" class="question-input" placeholder="Write your answer here...">
-    <div>
-      <button onclick="saveAnswer('answer1')">💾 Save Answer</button>
-      <button onclick="nextQuestion('page5')">➡ Next Question</button>
-    </div>
-</div>
-<div id="page5" class="section">
-    <img src="image4.jpg" class="question-img">
-    <h2>A moment we can't describe 😍</h2>
-    <input type="text" id="answer2" class="question-input" placeholder="Write your answer here...">
-    <div>
-      <button onclick="saveAnswer('answer2')">💾 Save Answer</button>
-      <button onclick="nextQuestion('page6')">➡ Next Question</button>
-    </div>
-</div>
-<div id="page6" class="section">
-    <img src="image4.jpg" class="question-img">
-    <h2>A happy memory between us 💖</h2>
-    <input type="text" id="answer3" class="question-input" placeholder="Write your answer here...">
-    <div>
-      <button onclick="saveAnswer('answer3')">💾 Save Answer</button>
-      <button onclick="nextQuestion('page7')">➡ Next Question</button>
-    </div>
-</div>
-<div id="page7" class="section">
-    <img src="image4.jpg" class="question-img">
-    <h2>Tell me everything in your heart 💌</h2>
-    <input type="text" id="answer4" class="question-input" placeholder="Write your answer here...">
-    <div>
-      <button onclick="saveAnswer('answer4')">💾 Save Answer</button>
-      <button onclick="nextQuestion('page8')">➡ See All Answers</button>
-    </div>
+<button class="backBtn" onclick="go('page3')">⬅ Back</button>
+<h2>When did we fall in love? ❤️</h2>
+<input id="answer1" class="question-input">
+<button onclick="saveAnswer('answer1')">Save</button>
+<button onclick="go('page5')">Next ➡</button>
 </div>
 
-<!-- Page 8: Show all answers -->
+<div id="page5" class="section">
+<button class="backBtn" onclick="go('page4')">⬅ Back</button>
+<h2>A moment we can't describe 😍</h2>
+<input id="answer2" class="question-input">
+<button onclick="saveAnswer('answer2')">Save</button>
+<button onclick="go('page6')">Next ➡</button>
+</div>
+
+<div id="page6" class="section">
+<button class="backBtn" onclick="go('page5')">⬅ Back</button>
+<h2>A happy memory 💖</h2>
+<input id="answer3" class="question-input">
+<button onclick="saveAnswer('answer3')">Save</button>
+<button onclick="go('page7')">Next ➡</button>
+</div>
+
+<div id="page7" class="section">
+<button class="backBtn" onclick="go('page6')">⬅ Back</button>
+<h2>Tell me everything 💌</h2>
+<input id="answer4" class="question-input">
+<button onclick="saveAnswer('answer4')">Save</button>
+<button onclick="go('page8')">See Answers</button>
+</div>
+
+<!-- PAGE 8 -->
 <div id="page8" class="section">
-    <h2>💌 Your Secret Answers 💌</h2>
-    <div id="allAnswers" style="margin-top:20px;line-height:1.8;font-size:18px;"></div>
-    <button onclick="iLoveYou()" style="margin-top:20px;padding:15px 25px;font-size:18px;border-radius:15px;border:none;background:#ff2e63;color:white;cursor:pointer;">I Love You 😘</button>
+<button class="backBtn" onclick="go('page7')">⬅ Back</button>
+<h2>💌 Your Answers</h2>
+<div id="allAnswers"></div>
+
+<button onclick="go('lovePage')" style="background:#ff2e63;color:white">
+I Love You 😘
+</button>
+</div>
+
+<!-- LOVE PAGE (NEW) -->
+<div id="lovePage" class="section">
+<button class="backBtn" onclick="go('page8')">⬅ Back</button>
+<h1>I LOVE YOU ❤️</h1>
+<div id="finalAnswers"></div>
 </div>
 
 <script>
-let startPage = document.getElementById("startPage");
-let page1 = document.getElementById("page1");
-let page2 = document.getElementById("page2");
-let page3 = document.getElementById("page3");
-let loveSong = document.getElementById("loveSong");
 
-function startSite(){
-    startPage.classList.remove("active");
-    page1.classList.add("active");
-    loveSong.play();
+function go(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+
+if(id==="page8") showAnswers();
+if(id==="lovePage") showFinal();
 }
 
-let noBtn=document.getElementById("noBtn");
-let yesBtn=document.getElementById("yesBtn");
-let size=20;
-let funnyTexts=["Are you sure? 😢","Think again 😏","You can't escape me 😂","I won't give up 😌","Last chance 😍"];
-let count=0;
-noBtn.addEventListener("click",function(){
-    size+=10;
-    yesBtn.style.fontSize=size+"px";
-    noBtn.style.fontSize="14px";
-    noBtn.innerText=funnyTexts[count%funnyTexts.length];
-    count++;
-});
-yesBtn.addEventListener("click",function(){
-    page1.classList.remove("active");
-    page2.classList.add("active");
-});
-
-function goToLove(){
-    page2.classList.remove("active");
-    page3.classList.add("active");
-}
-
-function showQuestions(){
-    page3.classList.remove("active");
-    document.getElementById("page4").classList.add("active");
-    document.getElementById("page4").scrollTop = 0;
-}
-
-function nextQuestion(nextPageId){
-    for(let i=4;i<=7;i++){
-        let page = document.getElementById('page'+i);
-        if(page.classList.contains('active')){ page.classList.remove('active'); break; }
-    }
-    document.getElementById(nextPageId).classList.add('active');
-}
-
-/* Floating hearts */
-setInterval(()=>{
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="❤️";
-    heart.style.position = "fixed";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.top = "100vh";
-    heart.style.fontSize = (Math.random()*25 + 20) + "px";
-    heart.style.zIndex = 9999;
-    heart.style.opacity = 1;
-    heart.style.transition = "transform 6s linear, opacity 6s linear";
-    document.body.appendChild(heart);
-    setTimeout(()=>{
-        heart.style.transform = "translateY(-120vh)";
-        heart.style.opacity = 0;
-    },50);
-    setTimeout(()=>{heart.remove();},6000);
-}, 300);
-
-/* Music Play/Pause */
-let musicBtn = document.getElementById("musicBtn");
-let isPlaying = false;
-musicBtn.addEventListener("click", ()=>{
-    if(!isPlaying){ loveSong.play(); musicBtn.innerText = "⏸️ Pause - From Yours, Ahmed ❤️"; isPlaying=true; }
-    else{ loveSong.pause(); musicBtn.innerText = "🎵 Play Love Song - From Yours, Ahmed ❤️"; isPlaying=false; }
-});
-
-/* Save Answers */
+/* SAVE ANSWERS */
 function saveAnswer(id){
-    let input = document.getElementById(id);
-    localStorage.setItem(id, input.value);
-    alert("Saved! ✅");
+localStorage.setItem(id, document.getElementById(id).value);
+alert("Saved ✅");
 }
+
+/* LOAD SAVED */
 for(let i=1;i<=4;i++){
-    let ans = localStorage.getItem('answer'+i);
-    if(ans) document.getElementById('answer'+i).value = ans;
+let val=localStorage.getItem("answer"+i);
+if(val) document.getElementById("answer"+i).value=val;
 }
 
-/* Show All Answers */
+/* SHOW ANSWERS */
 function showAnswers(){
-    let answersDiv = document.getElementById('allAnswers');
-    answersDiv.innerHTML = `
-      <p><b>When did we fall in love? ❤️</b><br>${localStorage.getItem('answer1') || 'No answer yet 😅'}</p>
-      <p><b>A moment we can't describe 😍</b><br>${localStorage.getItem('answer2') || 'No answer yet 😅'}</p>
-      <p><b>A happy memory between us 💖</b><br>${localStorage.getItem('answer3') || 'No answer yet 😅'}</p>
-      <p><b>Tell me everything in your heart 💌</b><br>${localStorage.getItem('answer4') || 'No answer yet 😅'}</p>
-    `;
+document.getElementById("allAnswers").innerHTML=`
+<p>${localStorage.getItem("answer1")||"No answer"}</p>
+<p>${localStorage.getItem("answer2")||"No answer"}</p>
+<p>${localStorage.getItem("answer3")||"No answer"}</p>
+<p>${localStorage.getItem("answer4")||"No answer"}</p>
+`;
 }
 
-/* I Love You button */
-function iLoveYou(){
-    showAnswers(); // First, show answers
-    alert("I Love You 😘💖");
+/* FINAL LOVE PAGE */
+function showFinal(){
+document.getElementById("finalAnswers").innerHTML=`
+<h3>All your answers ❤️</h3>
+<p>${localStorage.getItem("answer1")||""}</p>
+<p>${localStorage.getItem("answer2")||""}</p>
+<p>${localStorage.getItem("answer3")||""}</p>
+<p>${localStorage.getItem("answer4")||""}</p>
+`;
 }
+
 </script>
 </body>
 </html>
