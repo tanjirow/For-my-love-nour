@@ -72,9 +72,30 @@ button:hover{
 
 /* Cute page */
 .cute-page{
-    background:linear-gradient(135deg,#ff9a9e,#fecfef);
+    position:relative;
     font-family:'Great Vibes',cursive;
     font-size:40px;
+    color:white;
+    justify-content:center;
+    align-items:center;
+}
+
+.cute-bg{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: url('image1.jpg') no-repeat center center;
+    background-size: cover;
+    filter: brightness(0.5); /* لتغميق الخلفية شويه عشان النص يبان */
+    z-index:0;
+}
+
+.cute-text{
+    position:relative;
+    z-index:1;
+    text-align:center;
 }
 
 /* Love page */
@@ -139,10 +160,14 @@ iframe{
 
 <!-- Page 2 -->
 <div id="page2" class="section cute-page">
-    I knew you would say Yes 😍💖
-    <br><br>
-    <button onclick="goToLove()">Continue ❤️</button>
+    <div class="cute-bg"></div>
+    <div class="cute-text">
+        I knew you would say Yes 😍💖
+        <br><br>
+        <button onclick="goToLove()">Continue ❤️</button>
+    </div>
 </div>
+
 
 <!-- Page 3 -->
 <div id="page3" class="section love-page">
